@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=Playwrite+GB+S:ital,wght@0,100..400;1,100..400&family=Quicksand:wght@300..700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+body {
+    @apply font-body;
+}
+
+
+#navbar-toggle-btn {
+    @apply absolute top-8 left-6 w-6 h-4 flex flex-col justify-between z-10;
+}
+
+#navbar-toggle-btn span {
+    @apply w-full h-0.5 bg-black transition ease-in duration-200;
+}
+
+#navbar-toggle-btn.active span {
+    @apply absolute top-1/2 -translate-y-1/2;
+}
+
+#navbar-toggle-btn.active span:nth-child(1) {
+    @apply -rotate-45;
+}
+
+#navbar-toggle-btn.active span:nth-child(2) {
+    @apply hidden;
+}
+
+#navbar-toggle-btn.active span:nth-child(3) {
+    @apply rotate-45;
+}
+
+#navbar-wrap.active {
+    @apply w-auto;
+}
+
+#navbar-wrap.unactive {
+    @apply min-w-80;
+}
+
+#navbar-wrap.active nav {
+    @apply justify-center px-2;
+}
+
+#navbar-wrap.active nav a,
+#navbar-wrap.active nav i {
+    @apply m-0 p-0;
+}
+
+.navbar-tab {
+    @apply flex items-center justify-between font-medium my-6 w-full py-2 px-4 cursor-pointer;
+}
+
+
+.navbar-tab.active {
+    @apply bg-black text-white rounded-2xl;
+}
+
+.badge {
+    @apply flex justify-center items-center w-6 h-6 text-sm rounded-full bg-black text-white;
+}
+
+.navbar-tab.active .badge {
+    @apply bg-white text-black;
+}
+
+
+.loading {
+    background: linear-gradient(90deg, #ccc, #eee);
+    background-size: 200% 100%;
+    animation: loading 3s infinite;
+}
+
+@keyframes loading {
+    0% {
+        background-position: 0% 50%;
+    }
+    25% {
+        background-position: 50% 25%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    75% {
+        background-position: 50% 25%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+
+.btn {
+    @apply bg-black hover:bg-gray-800 transition ease-linear duration-200 text-white rounded-2xl;
+}
+
+
+.sort-button-active {
+    @apply text-black;
+}
+
+.side-block {
+    height: 100vh;
+}
+
+.hidden {
+    display: none;
+}

@@ -1,1 +1,4 @@
-env/
+/env/
+
+# Frontend
+linkify_frontend/node_modules/
