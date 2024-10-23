@@ -44,3 +44,14 @@ export default {
 	}
 }
 </script>
+
+
+<style>
+.sort-button-active {
+	@apply text-black;
+}
+
+.side-block {
+	height: 100vh;
+}
+</style>

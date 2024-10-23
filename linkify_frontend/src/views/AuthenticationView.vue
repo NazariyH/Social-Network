@@ -70,4 +70,30 @@ export default {
 #authorization-wrap {
     height: 100vh;
 }
+
+.input {
+    @apply block w-96 h-10 bg-gray-100 mt-2 px-4 rounded-2xl;
+}
+
+.input-wrap {
+    @apply mb-8;
+}
+
+#password,
+#confirm-password {
+    @apply w-80 rounded-e-none;
+}
+
+#password + button,
+#confirm-password + button {
+    @apply flex justify-center items-center mt-2 w-16 h-10 bg-gray-100 rounded-e-2xl;
+}
+
+label {
+    @apply font-bold;
+}
+
+.auth-tab-active {
+    @apply text-black border-b-2 border-black pb-1;
+}
 </style>
