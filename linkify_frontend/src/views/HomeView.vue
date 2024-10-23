@@ -12,18 +12,12 @@
 
 
 		<div>
-			<div class="w-full h-72 mb-8 bg-red-500 rounded-3xl"></div>
-			<div class="w-full h-52 mb-8 bg-yellow-500 rounded-3xl"></div>
+			<div class="w-full h-72 mb-8 bg-purple-400 rounded-3xl"></div>
 			<div class="w-full h-64 mb-8 bg-emerald-500 rounded-3xl"></div>
-			<div class="w-full h-72 mb-8 bg-red-500 rounded-3xl"></div>
-			<div class="w-full h-52 mb-8 bg-yellow-500 rounded-3xl"></div>
-			<div class="w-full h-64 mb-8 bg-emerald-500 rounded-3xl"></div>
-			<div class="w-full h-72 mb-8 bg-red-500 rounded-3xl"></div>
-			<div class="w-full h-52 mb-8 bg-yellow-500 rounded-3xl"></div>
-			<div class="w-full h-64 mb-8 bg-emerald-500 rounded-3xl"></div>
-			<div class="w-full h-72 mb-8 bg-red-500 rounded-3xl"></div>
-			<div class="w-full h-52 mb-8 bg-yellow-500 rounded-3xl"></div>
-			<div class="w-full h-64 mb-8 bg-emerald-500 rounded-3xl"></div>
+			<div class="w-full h-52 mb-8 bg-rose-400 rounded-3xl"></div>
+			<div class="w-full h-72 mb-8 bg-cyan-500 rounded-3xl"></div>
+			<div class="w-full h-52 mb-8 bg-pink-500 rounded-3xl"></div>
+			<div class="w-full h-64 mb-8 bg-amber-500 rounded-3xl"></div>
 		</div>
 	</div>
 
