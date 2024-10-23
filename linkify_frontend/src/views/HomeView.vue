@@ -1,5 +1,7 @@
 <template>
 	<div class="w-full px-4">
+		<CreatePost />
+
 		<div class="w-full flex justify-between py-8">
 			<h1 class="text-xl font-bold">Feeds</h1>
 
@@ -27,11 +29,13 @@
 
 <script>
 import RecomendationBar from '@/components/RecomendationBar.vue'
+import CreatePost from '@/components/CreatePost.vue'
 
 export default {
 	name: 'HomeView',
 	components: {
 		RecomendationBar,
+		CreatePost,
 	},
 	setup() {
 
