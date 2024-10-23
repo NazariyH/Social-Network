@@ -134,7 +134,10 @@ li {
 }
 
 #navbar-toggle-btn {
-    @apply absolute top-8 left-6 w-6 h-4 flex flex-col justify-between z-10;
+    @apply absolute top-8 left-4 w-6 h-4 flex flex-col justify-between z-10;
+}
+#navbar-toggle-btn.active {
+    @apply left-6;
 }
 
 #navbar-toggle-btn span {
@@ -178,7 +181,7 @@ li {
 }
 
 .navbar-tab {
-    @apply flex items-center justify-between font-medium my-6 w-full py-2 px-4 cursor-pointer;
+    @apply flex items-center justify-between font-medium my-6 w-full py-2 px-2 sm:px-4 cursor-pointer;
 }
 
 .navbar-tab i {
@@ -190,7 +193,7 @@ li {
 }
 
 .navbar-tab.router-link-active {
-    @apply bg-black text-white rounded-2xl py-2 px-4;
+    @apply bg-black text-white rounded-2xl py-2 px-2 sm:px-4;
 }
 
 .badge {

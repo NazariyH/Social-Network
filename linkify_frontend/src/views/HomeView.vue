@@ -1,5 +1,5 @@
 <template>
-	<div class="w-full px-4">
+	<div class="w-full min-w-64 min-h-full px-0 pe-2 sm:px-4 overflow-y-hidden">
 		<CreatePost />
 
 		<div class="w-full flex justify-between py-8">
