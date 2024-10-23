@@ -6,7 +6,8 @@
 
 
 body {
-    @apply font-body;
+    @apply font-body mx-auto;
+    max-width: 1728px;
 }
 
 

@@ -806,7 +806,10 @@ video {
 }
 
 body{
+  margin-left: auto;
+  margin-right: auto;
   font-family: Quicksand;
+  max-width: 1728px;
 }
 
 #navbar-toggle-btn{
