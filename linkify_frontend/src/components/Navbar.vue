@@ -1,6 +1,6 @@
 <template>
     <div id="navbar-wrap" class="side-block active sticky top-0">
-        <div @click="toggleMenu($event)" id="navbar-toggle-btn">
+        <div @click="toggleMenu" id="navbar-toggle-btn">
             <span></span>
             <span></span>
             <span></span>
@@ -31,7 +31,7 @@
                         </div>
                     </router-link>
                 </li>
-                <li class="navbar-tab">
+                <li @click="openMenu" class="navbar-tab">
                     <i class="fa-solid fa-magnifying-glass"></i>
                     <form>
                         <input type="text" class="navbar-item hidden">
@@ -94,23 +94,32 @@ import { onMounted } from 'vue'
 export default {
     name: 'Navbar',
     setup() {
-        let navbarItem, navbarWrap
+        let navbarItem, navbarWrap, navbarBtn
 
         onMounted(() => {
             navbarItem = document.querySelectorAll('.navbar-item')
             navbarWrap = document.getElementById('navbar-wrap')
+            navbarBtn = document.getElementById('navbar-toggle-btn')
         })
 
 
-        const toggleMenu = (event) => {
-            event.currentTarget.classList.toggle('active')
+        const toggleMenu = () => {
+            navbarBtn.classList.toggle('active')
 
             navbarItem.forEach(e => e.classList.toggle('hidden'))
             navbarWrap.classList.toggle('active')
             navbarWrap.classList.toggle('unactive')
         }
 
-        return { toggleMenu }
+        const openMenu = () => {
+            navbarBtn.classList.add('active')
+
+            navbarItem.forEach(e => e.classList.remove('hidden'))
+            navbarWrap.classList.remove('active')
+            navbarWrap.classList.add('unactive')
+        }
+
+        return { toggleMenu, openMenu }
     }
 }
 </script>
@@ -177,7 +186,7 @@ li {
 }
 
 .navbar-tab input {
-    @apply bg-gray-100 px-2 py-1 rounded-xl;
+    @apply px-2 py-1 rounded-xl bg-black text-white h-10;
 }
 
 .navbar-tab.router-link-active {
