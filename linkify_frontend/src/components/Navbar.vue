@@ -41,7 +41,7 @@
                     <router-link class="flex items-center"><i class="fa-regular fa-image text-xl mr-6"></i><span class="navbar-text-link hidden">Media</span></router-link>
                 </li>
                 <li class="navbar-tab">
-                    <router-link class="flex items-center"><i class="fa-solid fa-gear text-xl mr-6"></i><span class="navbar-text-link hidden">Settings</span></router-link>
+                    <router-link :to="{ name: 'authentication' }" class="flex items-center"><i class="fa-solid fa-gear text-xl mr-6"></i><span class="navbar-text-link hidden">Settings & Account</span></router-link>
                 </li>
             </ul>
 

@@ -596,6 +596,10 @@ video {
   margin-bottom: 2rem;
 }
 
+.me-8{
+  margin-inline-end: 2rem;
+}
+
 .ml-4{
   margin-left: 1rem;
 }
@@ -672,6 +676,10 @@ video {
   width: 9rem;
 }
 
+.w-96{
+  width: 24rem;
+}
+
 .w-full{
   width: 100%;
 }
@@ -682,6 +690,10 @@ video {
 
 .max-w-0{
   max-width: 0px;
+}
+
+.cursor-pointer{
+  cursor: pointer;
 }
 
 .flex-col{
@@ -698,6 +710,10 @@ video {
 
 .justify-end{
   justify-content: flex-end;
+}
+
+.justify-center{
+  justify-content: center;
 }
 
 .justify-between{
@@ -773,10 +789,6 @@ video {
   padding-bottom: 2rem;
 }
 
-.pe-4{
-  padding-inline-end: 1rem;
-}
-
 .text-center{
   text-align: center;
 }
@@ -798,6 +810,11 @@ video {
 
 .font-bold{
   font-weight: 700;
+}
+
+.text-blue-700{
+  --tw-text-opacity: 1;
+  color: rgb(29 78 216 / var(--tw-text-opacity));
 }
 
 .text-gray-500{
@@ -981,6 +998,56 @@ body{
 
 .hidden {
   display: none;
+}
+
+.input{
+  margin-top: 0.5rem;
+  display: block;
+  height: 2.5rem;
+  width: 24rem;
+  border-radius: 1rem;
+  --tw-bg-opacity: 1;
+  background-color: rgb(243 244 246 / var(--tw-bg-opacity));
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.input-wrap{
+  margin-bottom: 2rem;
+}
+
+#password,
+#confirm-password{
+  width: 20rem;
+  border-start-end-radius: 0px;
+  border-end-end-radius: 0px;
+}
+
+#password + button,
+#confirm-password + button{
+  margin-top: 0.5rem;
+  display: flex;
+  height: 2.5rem;
+  width: 4rem;
+  align-items: center;
+  justify-content: center;
+  border-start-end-radius: 1rem;
+  border-end-end-radius: 1rem;
+  --tw-bg-opacity: 1;
+  background-color: rgb(243 244 246 / var(--tw-bg-opacity));
+}
+
+label{
+  font-weight: 700;
+}
+
+.auth-tab-active{
+  border-bottom-width: 2px;
+  --tw-border-opacity: 1;
+  border-color: rgb(0 0 0 / var(--tw-border-opacity));
+  padding-bottom: 0.25rem;
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity));
 }
 
 @media (min-width: 1024px){
