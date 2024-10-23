@@ -7,7 +7,7 @@
         </div>
 
         <nav class="w-full h-full p-8 flex flex-col justify-between items-center">
-            <div id="navbar-profile-info" class="w-full hidden">
+            <div id="navbar-profile-info" class="w-full hidden navbar-item">
                 <div class="relative flex justify-end">
                     <img src="../assets/Decorations/profile_doodles.png" class="w-36 absolute -z-10 left-0">
                     <div class="w-36 h-36 loading rounded-full overflow-hidden">
@@ -27,43 +27,49 @@
                     <router-link :to="{ name: 'home' }" class="navbar-tab flex items-center">
                         <div>
                             <i class="fa-solid fa-compass text-xl mr-6"></i>
-                            <span class="navbar-text-link hidden">News Feed</span>
+                            <span class="navbar-item hidden">News Feed</span>
                         </div>
                     </router-link>
                 </li>
+                <li class="navbar-tab">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <form>
+                        <input type="text" class="navbar-item hidden">
+                    </form>
+                </li>
                 <li>
-                    <router-link class="navbar-tab flex items-center">
+                    <router-link to="empty" class="navbar-tab flex items-center">
                         <div>
                             <i class="fa-solid fa-message text-xl mr-6"></i>
-                            <span class="navbar-text-link hidden">Messages</span>
+                            <span class="navbar-item hidden">Messages</span>
                         </div>
 
-                        <div class="badge hidden">3</div>
+                        <div class="navbar-item hidden">3</div>
                     </router-link>
                 </li>
                 <li>
-                    <router-link class="navbar-tab flex items-center">
+                    <router-link to="empty" class="navbar-tab flex items-center">
                         <div>
                             <i class="fa-solid fa-comment-dots text-xl mr-6"></i>
-                            <span class="navbar-text-link hidden">Forums</span>
+                            <span class="navbar-item hidden">Forums</span>
                         </div>
                     </router-link>
                 </li>
                 <li>
-                    <router-link class="navbar-tab flex items-center">
+                    <router-link to="empty" class="navbar-tab flex items-center">
                         <div>
                             <i class="fa-solid fa-user-group text-xl mr-5"></i>
-                            <span class="navbar-text-link hidden">Friends</span>
+                            <span class="navbar-item hidden">Friends</span>
                         </div>
 
-                        <div class="badge hidden">7</div>
+                        <div class="navbar-item hidden">7</div>
                     </router-link>
                 </li>
                 <li>
-                    <router-link class="navbar-tab flex items-center">
+                    <router-link to="empty" class="navbar-tab flex items-center">
                         <div>
                             <i class="fa-regular fa-image text-xl mr-6"></i>
-                            <span class="navbar-text-link hidden">Media</span>
+                            <span class="navbar-item hidden">Media</span>
                         </div>
                     </router-link>
                 </li>
@@ -71,13 +77,13 @@
                     <router-link :to="{ name: 'authentication' }" class="navbar-tab flex items-center">
                         <div>
                             <i class="fa-solid fa-gear text-xl mr-6"></i>
-                            <span class="navbar-text-link hidden">Settings & Account</span>
+                            <span class="navbar-item hidden">Settings & Account</span>
                         </div>
                     </router-link>
                 </li>
             </ul>
 
-            <p class="text-sm copy-rigth hidden">© 2024 Linkify. All rights reserved.</p>
+            <p class="text-sm hidden navbar-item">© 2024 Linkify. All rights reserved.</p>
         </nav>
     </div>
 </template>
@@ -88,13 +94,10 @@ import { onMounted } from 'vue'
 export default {
     name: 'Navbar',
     setup() {
-        let navbarTextLinks, navbarProfileInfo, copyRight, badges, navbarWrap
+        let navbarItem, navbarWrap
 
         onMounted(() => {
-            navbarTextLinks = document.querySelectorAll('.navbar-text-link')
-            navbarProfileInfo = document.getElementById('navbar-profile-info')
-            copyRight = document.querySelector('.copy-rigth')
-            badges = document.querySelectorAll('.badge')
+            navbarItem = document.querySelectorAll('.navbar-item')
             navbarWrap = document.getElementById('navbar-wrap')
         })
 
@@ -102,10 +105,7 @@ export default {
         const toggleMenu = (event) => {
             event.currentTarget.classList.toggle('active')
 
-            navbarTextLinks.forEach(e => e.classList.toggle('hidden'))
-            badges.forEach(e => e.classList.toggle('hidden'))
-            navbarProfileInfo.classList.toggle('hidden')
-            copyRight.classList.toggle('hidden')
+            navbarItem.forEach(e => e.classList.toggle('hidden'))
             navbarWrap.classList.toggle('active')
             navbarWrap.classList.toggle('unactive')
         }
@@ -161,7 +161,7 @@ li {
 }
 
 #navbar-wrap.active nav .navbar-tab {
-    @apply justify-center p-2 my-2;
+    @apply justify-center my-4;
 }
 
 #navbar-wrap.active nav i {
@@ -172,9 +172,16 @@ li {
     @apply flex items-center justify-between font-medium my-6 w-full py-2 px-4 cursor-pointer;
 }
 
+.navbar-tab i {
+    @apply text-xl;
+}
+
+.navbar-tab input {
+    @apply bg-gray-100 px-2 py-1 rounded-xl;
+}
 
 .navbar-tab.router-link-active {
-    @apply bg-black text-white rounded-2xl;
+    @apply bg-black text-white rounded-2xl py-2 px-4;
 }
 
 .badge {
