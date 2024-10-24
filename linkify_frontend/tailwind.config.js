@@ -11,6 +11,9 @@ export default {
 				body: ['Quicksand'],
 				navBrand: ['Playwrite GB S'],
 			},
+			spacing: {
+				'post-file': '36rem'
+			}
 		},
 	},
 	plugins: [],

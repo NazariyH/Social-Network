@@ -14,6 +14,7 @@
 
 
 		<div>
+			<Post />
 			<div class="w-full h-72 mb-8 bg-purple-400 rounded-3xl"></div>
 			<div class="w-full h-64 mb-8 bg-emerald-500 rounded-3xl"></div>
 			<div class="w-full h-52 mb-8 bg-rose-400 rounded-3xl"></div>
@@ -30,12 +31,14 @@
 <script>
 import RecomendationBar from '@/components/RecomendationBar.vue'
 import CreatePost from '@/components/CreatePost.vue'
+import Post from '@/components/Post.vue'
 
 export default {
 	name: 'HomeView',
 	components: {
 		RecomendationBar,
 		CreatePost,
+		Post,
 	},
 	setup() {
 
