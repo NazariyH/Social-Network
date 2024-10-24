@@ -1101,7 +1101,7 @@ body{
 }
 
 .loading {
-  background: linear-gradient(90deg, #ccc, #eee);
+  background: linear-gradient(90deg, #878787, #eee);
   background-size: 200% 100%;
   animation: loading 3s infinite;
 }

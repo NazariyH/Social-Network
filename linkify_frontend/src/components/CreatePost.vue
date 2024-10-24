@@ -11,7 +11,7 @@
             <div class="w-full min-h-40 flex flex-col justify-between">
                 <input class="w-full h-16 px-4 rounded-2xl bg-red-500 mb-4 sm:mb-0 placeholder-white" type="text" placeholder="Title..">
 
-                <div class="w-full grid grid-cols-2 gap-4 text-2xl h-16">
+                <div class="w-full grid grid-cols-2 gap-4 text-xl h-16">
                     <div class="w-full h-full">
                         <label for="img-input" class="w-full h-full">
                             <div class="w-full h-full rounded-2xl bg-emerald-500 flex justify-center items-center">
