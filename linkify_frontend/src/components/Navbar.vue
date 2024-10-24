@@ -189,7 +189,7 @@ li {
 }
 
 .navbar-tab input {
-    @apply px-2 py-1 rounded-xl bg-black text-white h-10;
+    @apply px-2 py-1 rounded-xl bg-gray-100 h-10;
 }
 
 .navbar-tab.router-link-active {
