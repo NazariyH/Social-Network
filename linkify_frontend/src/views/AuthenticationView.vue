@@ -72,7 +72,7 @@ export default {
 }
 
 .input {
-    @apply block w-96 h-10 bg-gray-100 mt-2 px-4 rounded-2xl;
+    @apply block w-64 sm:w-96 h-10 bg-gray-100 mt-2 px-4 rounded-2xl;
 }
 
 .input-wrap {
@@ -81,7 +81,7 @@ export default {
 
 #password,
 #confirm-password {
-    @apply w-80 rounded-e-none;
+    @apply w-48 sm:w-80 rounded-e-none;
 }
 
 #password + button,
@@ -95,5 +95,9 @@ label {
 
 .auth-tab-active {
     @apply text-black border-b-2 border-black pb-1;
+}
+
+.btn-submit {
+    @apply w-64 sm:w-96 h-10;
 }
 </style>

@@ -22,7 +22,7 @@
             </div>
         </div>
 
-        <button type="submiy" class="btn w-96 h-10">Sign up</button>
+        <button type="submiy" class="btn btn-submit">Sign up</button>
     </form>
 </template>
 

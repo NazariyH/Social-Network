@@ -19,7 +19,7 @@
             <router-link class="96 text-blue-700 text-sm">Forgot password?</router-link>
         </div>
 
-        <button type="submiy" class="btn w-96 h-10">Log in</button>
+        <button type="submit" class="btn btn-submit">Log in</button>
     </form>
 </template>
 
