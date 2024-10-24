@@ -1,5 +1,5 @@
 <template>
-    <div id="navbar-wrap" class="side-block active sticky top-0">
+    <div id="navbar-wrap" class="side-block active sticky top-0 z-10">
         <div @click="toggleMenu" id="navbar-toggle-btn">
             <span></span>
             <span></span>
@@ -134,14 +134,14 @@ li {
 }
 
 #navbar-toggle-btn {
-    @apply absolute top-8 left-4 w-6 h-4 flex flex-col justify-between z-10;
+    @apply absolute top-8 left-4 w-10 h-8 flex flex-col justify-between z-10 bg-white p-2 rounded-md;
 }
 #navbar-toggle-btn.active {
-    @apply left-6;
+    @apply left-6 p-2;
 }
 
 #navbar-toggle-btn span {
-    @apply w-full h-0.5 bg-black transition ease-in duration-200;
+    @apply w-6 h-0.5 bg-black transition ease-in duration-200;
 }
 
 #navbar-toggle-btn.active span {
@@ -160,12 +160,17 @@ li {
     @apply rotate-45;
 }
 
+
 #navbar-wrap.active {
     @apply w-auto;
 }
 
 #navbar-wrap.unactive {
     @apply min-w-80;
+}
+
+#navbar-wrap.active nav {
+    @apply hidden md:flex;
 }
 
 #navbar-wrap.active nav {
