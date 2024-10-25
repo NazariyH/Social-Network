@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '@/views/HomeView.vue'
 import AuthenticationView from '@/views/AuthenticationView.vue'
+import InboxView  from '@/views/InboxView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -14,6 +15,11 @@ const router = createRouter({
       path: '/account/authentication/',
       name: 'authentication',
       component: AuthenticationView
+    },
+    {
+      path: '/inbox/',
+      name: 'inbox',
+      component: InboxView
     }
   ]
 })
