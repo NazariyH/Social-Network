@@ -50,8 +50,8 @@
                 <li>
                     <router-link to="empty" class="navbar-tab flex items-center">
                         <div>
-                            <i class="fa-solid fa-comment-dots text-xl mr-6"></i>
-                            <span class="navbar-item hidden">Forums</span>
+                            <i class="fa-solid fa-bell text-xl mr-6"></i>
+                            <span class="navbar-item hidden">Notifications</span>
                         </div>
                     </router-link>
                 </li>
