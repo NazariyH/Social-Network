@@ -69,7 +69,7 @@
                     <router-link to="empty" class="navbar-tab flex items-center">
                         <div>
                             <i class="fa-regular fa-image text-xl mr-6"></i>
-                            <span class="navbar-item hidden">Media</span>
+                            <span class="navbar-item hidden">Gallery</span>
                         </div>
                     </router-link>
                 </li>
