@@ -65,7 +65,7 @@
 
         <div class="flex">
             <div class="me-8">
-                <button>
+                <button class="like-btn">
                     <i class="fa-regular fa-heart"></i>
                     <span class="ml-4">732</span>
                 </button>
@@ -169,4 +169,15 @@
     .slider-dot.active {
         @apply w-4 h-4 bg-gray-700 hover:bg-gray-600
     }
+
+
+    .like-btn.liked {
+        animation: bounce 0.6s;
+    }
+
+    @keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-10px); }
+    60% { transform: translateY(-5px); }
+}
 </style>

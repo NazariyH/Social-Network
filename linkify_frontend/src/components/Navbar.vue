@@ -65,11 +65,9 @@
                 <li>
                     <router-link to="empty" class="navbar-tab flex items-center">
                         <div>
-                            <i class="fa-solid fa-user-group text-xl mr-5"></i>
-                            <span class="navbar-item hidden">Friends</span>
+                            <i class="fa-solid fa-layer-group text-xl mr-6"></i>
+                            <span class="navbar-item hidden">Stories</span>
                         </div>
-
-                        <div class="navbar-item hidden">7</div>
                     </router-link>
                 </li>
                 <li>
