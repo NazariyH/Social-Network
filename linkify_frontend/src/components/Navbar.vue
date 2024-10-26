@@ -31,10 +31,11 @@
                         </div>
                     </router-link>
                 </li>
-                <li @click="openMenu" class="navbar-tab">
+                <li @click="openMenu" class="navbar-tab" id="search-field-tab">
                     <i class="fa-solid fa-magnifying-glass"></i>
+
                     <form>
-                        <input type="text" class="navbar-item hidden">
+                        <input type="text" class="navbar-item hidden" id="search-field-input">
                     </form>
                 </li>
                 <li>
@@ -105,7 +106,8 @@ export default {
         Notification
     },
     setup() {
-        let navbarItem, navbarWrap, navbarBtn, notificationBar, notificationBtn
+        let navbarItem, navbarWrap, navbarBtn, notificationBar, notificationBtn, 
+        searchFieldInput, searchFieldTab
 
         onMounted(() => {
             navbarItem = document.querySelectorAll('.navbar-item')
@@ -113,6 +115,12 @@ export default {
             navbarBtn = document.getElementById('navbar-toggle-btn')
             notificationBar = document.getElementById('notification-bar')
             notificationBtn = document.getElementById('notification-btn')
+
+            searchFieldInput = document.getElementById('search-field-input')
+            searchFieldTab = document.getElementById('search-field-tab')
+
+            searchFieldInput.addEventListener('focus', () => searchFieldTab.classList.add('active'))
+            searchFieldInput.addEventListener('blur', () => searchFieldTab.classList.remove('active'))
         })
 
 
@@ -229,6 +237,10 @@ li {
 .navbar-tab.router-link-active,
 .navbar-tab.active {
     @apply bg-black text-white rounded-2xl py-2 px-2 sm:px-4;
+}
+
+.navbar-tab.active input {
+    @apply bg-white text-black;
 }
 
 .badge {
