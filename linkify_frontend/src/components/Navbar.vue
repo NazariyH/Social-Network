@@ -6,7 +6,7 @@
             <span></span>
         </div>
 
-        <nav class="w-full h-full p-8 flex flex-col justify-between items-center">
+        <nav class="w-full h-full p-8 flex flex-col justify-between items-center overflow-y-auto">
             <div id="navbar-profile-info" class="w-full hidden navbar-item">
                 <div class="relative flex justify-end">
                     <img src="../assets/Decorations/profile_doodles.png" class="w-36 absolute -z-10 left-0">
@@ -48,12 +48,18 @@
                     </router-link>
                 </li>
                 <li>
-                    <router-link to="empty" class="navbar-tab flex items-center">
+                    <button id="notification-btn" @click="toggleNotification" class="navbar-tab flex items-center">
                         <div>
                             <i class="fa-solid fa-bell text-xl mr-6"></i>
                             <span class="navbar-item hidden">Notifications</span>
                         </div>
-                    </router-link>
+
+                        <div class="navbar-item hidden">7</div>
+                    </button>
+
+                    <div id="notification-bar" class="hidden">
+                        <Notification />
+                    </div>
                 </li>
                 <li>
                     <router-link to="empty" class="navbar-tab flex items-center">
@@ -91,15 +97,22 @@
 
 <script>
 import { onMounted } from 'vue'
+import Notification from '@/components/Notification.vue'
+
 export default {
     name: 'Navbar',
+    components: {
+        Notification
+    },
     setup() {
-        let navbarItem, navbarWrap, navbarBtn
+        let navbarItem, navbarWrap, navbarBtn, notificationBar, notificationBtn
 
         onMounted(() => {
             navbarItem = document.querySelectorAll('.navbar-item')
             navbarWrap = document.getElementById('navbar-wrap')
             navbarBtn = document.getElementById('navbar-toggle-btn')
+            notificationBar = document.getElementById('notification-bar')
+            notificationBtn = document.getElementById('notification-btn')
         })
 
 
@@ -109,7 +122,13 @@ export default {
             navbarItem.forEach(e => e.classList.toggle('hidden'))
             navbarWrap.classList.toggle('active')
             navbarWrap.classList.toggle('unactive')
+
+            if (!notificationBar.classList.contains('hidden')) {
+                notificationBtn.classList.remove('active')
+                notificationBar.classList.add('hidden')
+            }
         }
+
 
         const openMenu = () => {
             navbarBtn.classList.add('active')
@@ -119,7 +138,17 @@ export default {
             navbarWrap.classList.add('unactive')
         }
 
-        return { toggleMenu, openMenu }
+
+        const toggleNotification = () => {
+            notificationBtn.classList.toggle('active')
+            notificationBar.classList.toggle('hidden')
+
+            if (navbarWrap.classList.contains('active')) {
+                openMenu()
+            }
+        }
+
+        return { toggleMenu, openMenu, toggleNotification }
     }
 }
 </script>
@@ -197,7 +226,8 @@ li {
     @apply px-2 py-1 rounded-xl bg-gray-100 h-10;
 }
 
-.navbar-tab.router-link-active {
+.navbar-tab.router-link-active,
+.navbar-tab.active {
     @apply bg-black text-white rounded-2xl py-2 px-2 sm:px-4;
 }
 
@@ -205,7 +235,8 @@ li {
     @apply flex justify-center items-center w-6 h-6 text-sm rounded-full bg-black text-white;
 }
 
-.navbar-tab.router-link-active .badge {
+.navbar-tab.router-link-active .badge,
+.navbar-tab.active .badge {
     @apply bg-white text-black;
 }
 
