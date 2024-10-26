@@ -1,5 +1,5 @@
 <template>
-    <div class="w-full h-full rounded-3xl overflow-hidden relative">
+    <div class="w-full h-full rounded-3xl overflow-hidden relative ">
         <div class="h-full flex flex-col justify-between p-4">
             <div class="chat overflow-y-auto ">
                 <Message />

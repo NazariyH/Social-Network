@@ -1,7 +1,7 @@
 <template>
-    <div class="inbox-wrap flex justify-between pr-4 py-8">
-        <Chat />
+    <div class="inbox-wrap flex flex-col justify-between pl-4 md:pl-0 pr-4 py-4">
         <FriendBar />
+        <Chat />
     </div>
 </template>
 

@@ -1,11 +1,11 @@
 <template>
     <div>
         <form class="flex text-white pt-4">
-            <button type="submit" class="btn mr-4">Send</button>
+            <button type="submit" class="btn mr-2">Send</button>
 
             <input class="create-message-block bg-red-400 w-full px-4 placeholder-white" placeholder="Your message.." type="text">
 
-            <div class="mx-4">
+            <div class="mx-2">
                 <label class="create-message-block bg-purple-400" for="img">
                     <i class="fa-solid fa-image"></i>
                 </label>
