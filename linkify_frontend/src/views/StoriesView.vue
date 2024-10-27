@@ -51,23 +51,41 @@ export default {
 
 
         function moveStories(direction) {
+            let video
+            console.log(storiesWrap[storyPosition].querySelector('video'))
+
             if (direction === 'down') {
+                video = storiesWrap[storyPosition].querySelector('video')
+                video.pause()
+
                 storyPosition += 1
+
+                video = storiesWrap[storyPosition].querySelector('video')
+                if (video.paused)
+                    video.play()
 
                 storyScreen.style.transform = `translateY(-${storyPosition}00%)`
             } else if (direction === 'up') {
-                if (storyPosition !== 0)
+                if (storyPosition !== 0) {
+                    video = storiesWrap[storyPosition].querySelector('video')
+                    video.pause()
+
                     storyPosition -= 1
+
+                    video = storiesWrap[storyPosition].querySelector('video')
+                    if (video.paused)
+                        video.play()
+                }
 
                 storyScreen.style.transform = `translateY(-${storyPosition}00%)`
             }
         }
 
         function handleStorySwipe() {
-            if(touchScreenEnd - touchScreenStart > swipeRange)
+            if (touchScreenEnd - touchScreenStart > swipeRange)
                 moveStories('up')
 
-            if(touchScreenEnd - touchScreenStart < -swipeRange)
+            if (touchScreenEnd - touchScreenStart < -swipeRange)
                 moveStories('down')
         }
     }
