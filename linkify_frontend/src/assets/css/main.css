@@ -14,7 +14,7 @@ body {
 .loading {
     background: linear-gradient(90deg, #878787, #eee);
     background-size: 200% 100%;
-    animation: loading 3s infinite;
+    animation: loading 4s cubic-bezier(0.5, 0, 0.5, 1) infinite; /* Changed duration and easing */
 }
 
 @keyframes loading {
@@ -34,6 +34,7 @@ body {
         background-position: 0% 50%;
     }
 }
+
 
 
 .btn {
