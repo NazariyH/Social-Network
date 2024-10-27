@@ -1,4 +1,12 @@
-/env/
+# Virtual Environment
+env/
 
 # Frontend
 linkify_frontend/node_modules/
+linkify_frontend/dist/
+
+# Backend
+linkify_backend/__pycache__/
+linkify_backend/*.pyc
+linkify_backend/media/
+linkify_backend/staticfiles/
