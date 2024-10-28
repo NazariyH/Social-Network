@@ -1,5 +1,5 @@
 <template>
-    <div class="w-full mb-8 rounded-3xl bg-purple-500 p-8 text-white font-bold">
+    <div :class="['w-full', 'mb-8', 'rounded-3xl', 'p-8', 'text-white', 'font-bold', randomColor]">
         <div class="flex items-center justify-between w-ful mb-4">
             <router-link to="empty">
                 <div class="flex items-center">
@@ -83,10 +83,16 @@
 
 <script>
     import { onMounted } from 'vue'
+    import { useColorsStore } from '@/stores/colors'
+    import { ref } from 'vue'
+
     export default {
         name: 'Post',
         props: ['post'],
         setup() {
+            const colorsStore = useColorsStore()
+            const randomColor = ref(colorsStore.getRandomColor())
+
             let currentSliderDot, sliderWrap, touchStartX, touchEndX, dots
             let currentSliderId = 0
 
@@ -150,7 +156,7 @@
             }
 
 
-            return { toggleSlide }
+            return { toggleSlide, randomColor }
 
         }
     }
