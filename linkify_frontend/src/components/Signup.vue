@@ -39,7 +39,7 @@
         <button type="submit" class="btn btn-submit">Sign up</button>
 
         <template v-if="errors.length > 0">
-            <div class="bg-red-300 text-white rounded-2xl px-4 py-2 mt-4">
+            <div class="bg-red-500 text-white rounded-2xl px-4 py-2 mt-4">
                 <ul>
                     <li v-for="error in errors" :key="error">{{error}}</li>
                 </ul>
@@ -95,8 +95,7 @@
                         }
 
                     } catch (error) {
-                        console.log(error)
-                        this.errors.push('Something went wrong :(')
+                        this.errors.push(error.response.data.message)
                     }
                 }
             }

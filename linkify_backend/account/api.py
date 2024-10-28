@@ -27,6 +27,11 @@ class Signup(APIView):
 
             return Response({'message': 'Form Submitted successfully'}, status=status.HTTP_201_CREATED)
         else:
-            for i in range(100):
-                print(form.errors)
-            return Response({'errors': form.errors}, status=status.HTTP_400_BAD_REQUEST)
+            message = 'Oops something went wrong :('
+
+            for field in form:
+                if field.errors:
+                    for error in field.errors:
+                        message = error
+                        
+            return Response({'message': message}, status=status.HTTP_400_BAD_REQUEST)
