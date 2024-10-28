@@ -71,7 +71,7 @@
                     </router-link>
                 </li>
                 <li>
-                    <router-link to="empty" class="navbar-tab flex items-center">
+                    <router-link :to="{ name: 'store' }" class="navbar-tab flex items-center">
                         <div>
                             <i class="fa-solid fa-icons text-xl mr-6"></i>
                             <span class="navbar-item hidden">Store</span>
