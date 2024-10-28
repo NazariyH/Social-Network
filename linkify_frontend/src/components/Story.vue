@@ -13,9 +13,11 @@
                     <router-link to="Empty">@Nazariy</router-link>
                 </div>
 
-                <button class="rouded-full btn size-10 flex justify-center items-center text-sm">
-                    <i class="fa-solid fa-volume-xmark"></i>
-                </button>
+                <div class="flex items-center">
+                    <span class="equalizer active"></span>
+                    <span class="equalizer active"></span>
+                    <span class="equalizer active"></span>
+                </div>
             </div>
 
             <div class="story-bar justify-center">
@@ -41,7 +43,7 @@
                     src="https://images.unsplash.com/photo-1511860810434-a92f84c6f01e?q=80&w=2592&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                     alt=""> -->
 
-                <video class="w-full h-full object-cover" src="../assets/test.mp4" autoplay loop></video>
+                <video class="w-full h-full object-cover" src="../assets/test.mp4" loop></video>
             </div>
         </div>
     </div>
@@ -76,5 +78,64 @@ export default {
 
 .add-btn {
     @apply size-12 text-2xl;
+}
+
+.equalizer {
+    @apply w-1 h-1 bg-gray-600 mx-0.5 rounded-xl;
+}
+
+.equalizer.active:nth-child(1) {
+    animation: equalizer1 1s ease-out infinite;
+}
+.equalizer.active:nth-child(2) {
+    animation: equalizer2 1s ease-out infinite;
+}
+.equalizer.active:nth-child(3) {
+    animation: equalizer3 1s ease-out infinite;
+}
+
+@keyframes equalizer1 {
+    0% {
+        height: 1.25rem;
+    }
+    33% {
+        height: 0.75rem;
+    }
+    66% {
+        height: 0.25rem;
+    }
+    100% {
+        height: 1.25rem;
+    }
+}
+
+@keyframes equalizer2 {
+    0% {
+        height: 0.25rem;
+    }
+    33% {
+        height: 0.75rem;
+    }
+    66% {
+        height: 1.25rem;
+    }
+    100% {
+        height: 0.25rem;
+    }
+}
+
+@keyframes equalizer3 {
+    0% {
+        height: 1.25rem;
+    }
+    33% {
+        height: 1rem;
+    }
+    66% {
+        height: 0.75rem;
+    }
+    100% {
+        height: 1.25rem;
+    }
 }
 </style>
