@@ -36,7 +36,11 @@ body {
 }
 
 
-
 .btn {
     @apply bg-black hover:bg-gray-800 transition ease-linear duration-200 text-white rounded-2xl cursor-pointer;
+}
+
+
+input:focus {
+    outline: none;
 }
