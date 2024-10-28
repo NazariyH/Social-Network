@@ -27,8 +27,8 @@
             <label for="confirm-password">Password</label>
 
             <div class="flex">
-                <input id="confirm-password" :type="show_password ? 'text' : 'password'" v-model="form.password2" class="input"
-                    required>
+                <input id="confirm-password" :type="show_password ? 'text' : 'password'" v-model="form.password2"
+                    class="input" required>
                 <button @click.prevent="toggleShowPassword">
                     <i v-if="show_password" class="fa-solid fa-eye"></i>
                     <i v-else class="fa-solid fa-eye-slash"></i>
@@ -41,7 +41,7 @@
         <template v-if="errors.length > 0">
             <div class="bg-red-500 text-white rounded-2xl px-4 py-2 mt-4">
                 <ul>
-                    <li v-for="error in errors" :key="error">{{error}}</li>
+                    <li v-for="error in errors" :key="error">{{ error }}</li>
                 </ul>
             </div>
         </template>
@@ -50,55 +50,60 @@
 
 
 <script>
-    import { useToggleFunction } from '@/composables/useTogglePassword'
-    import { useToastStore } from '@/stores/toast';
-    import axios from 'axios'
+import { useToggleFunction } from '@/composables/useTogglePassword'
+import { useToggleAuthTabFunction } from '@/composables/useToggleAuthTab'
+import { useToastStore } from '@/stores/toast';
+import axios from 'axios'
 
-    export default {
-        name: 'Signup',
-        setup() {
-            const { show_password, toggleShowPassword } = useToggleFunction()
-            const toastStore = useToastStore()
+export default {
+    name: 'Signup',
+    setup() {
+        const { show_password, toggleShowPassword } = useToggleFunction()
+        const { isLoginActive, switchLogin } = useToggleAuthTabFunction()
+        const toastStore = useToastStore()
 
+        return { show_password, toggleShowPassword, toastStore, switchLogin }
+    },
+    data() {
+        return {
+            form: {
+                email: '',
+                name: '',
+                password1: '',
+                password2: '',
+            },
+            errors: []
+        }
+    },
+    methods: {
+        async submitForm() {
+            this.errors = []
 
-            return { show_password, toggleShowPassword, toastStore }
-        },
-        data() {
-            return {
-                form: {
-                    email: '',
-                    name: '',
-                    password1: '',
-                    password2: '',
-                },
+            if (this.errors.length === 0) {
+                try {
+                    const response = await axios.post('/api/signup/', this.form)
 
-                errors: []
-            }
-        },
-        methods: {
-            async submitForm() {
-                this.errors = []
+                    if (response) {
+                        this.toastStore.showToast(5000, 'The user is registered. Please log in', 'bg-emerald-500')
 
+                        // Clear form fields
+                        this.form.email = ''
+                        this.form.name = ''
+                        this.form.password1 = ''
+                        this.form.password2 = ''
 
-                if (this.errors.length === 0) {
-                    try {
-                        const response = await axios.post('/api/signup/', this.form)
+                        this.switchLogin()
+                    }
 
-
-                        if (response) {
-                            this.toastStore.showToast(5000, 'The user is registered. Please log in', 'bg-emerald-500')
-
-                            this.form.email = ''
-                            this.form.name = ''
-                            this.form.password1 = ''
-                            this.form.password2 = ''
-                        }
-
-                    } catch (error) {
+                } catch (error) {
+                    if (error.response && error.response.data && error.response.data.message) {
                         this.errors.push(error.response.data.message)
+                    } else {
+                        this.errors.push('An error occurred. Please try again.')
                     }
                 }
             }
         }
     }
+}
 </script>

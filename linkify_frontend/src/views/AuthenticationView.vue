@@ -2,10 +2,10 @@
     <div id="authorization-wrap" class="w-full h-full flex flex-col items-center justify-center relative">
         <div class="bg-white p-8 rounded-3xl">
             <div class="font-bold text-gray-500 mb-8">
-                <span @click="switchLogin" :class="{ 'cursor-pointer me-8': true, 'auth-tab-active': isLoginActive }">
+                <span @click="switchLogin" id="login-tab" class="cursor-pointer me-8 auth-tab-active">
                     Login
                 </span>
-                <span @click="switchSignup" :class="{ 'cursor-pointer': true, 'auth-tab-active': !isLoginActive }">
+                <span @click="switchSignup" id="signup-tab" class="cursor-pointer">
                     Signup
                 </span>
             </div>
@@ -20,8 +20,7 @@
 
 
 <script>
-import { useToggleFunction } from '@/composables/useTogglePassword'
-import { ref } from 'vue'
+import { useToggleAuthTabFunction } from '@/composables/useToggleAuthTab'
 import Login from '@/components/Login.vue'
 import Signup from '@/components/Signup.vue'
 
@@ -32,35 +31,9 @@ export default {
         Signup,
     },
     setup() {
-        const isLoginActive = ref(true)
+        const { switchLogin, switchSignup } = useToggleAuthTabFunction()
 
-
-        function switchLogin(event) {
-            isLoginActive.value = true
-
-            const loginBlock = document.getElementById('login')
-            if (loginBlock.classList.contains('hidden'))
-                loginBlock.classList.remove('hidden')
-
-            const signupBlock = document.getElementById('signup')
-            if (!signupBlock.classList.contains('hidden'))
-                signupBlock.classList.add('hidden')
-        }
-
-
-        function switchSignup(event) {
-            isLoginActive.value = false
-
-            const loginBlock = document.getElementById('login')
-            if (!loginBlock.classList.contains('hidden'))
-                loginBlock.classList.add('hidden')
-
-            const signupBlock = document.getElementById('signup')
-            if (signupBlock.classList.contains('hidden'))
-                signupBlock.classList.remove('hidden')
-        }
-
-        return { isLoginActive, switchLogin, switchSignup }
+        return { switchLogin, switchSignup}
     }
 }
 </script>
