@@ -141,13 +141,11 @@
                 currentSliderDot.classList.remove('active')
 
                 if (event.currentTarget) {
-                    console.log(event.currentTarget)
                     event.currentTarget.classList.add('active')
                     slideId = event.currentTarget.getAttribute('data-id') - 1
                     currentSliderId = slideId
 
                 } else {
-                    console.log(event)
                     event.classList.add('active')
                     slideId = event.getAttribute('data-id') - 1
                 }

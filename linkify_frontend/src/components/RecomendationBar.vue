@@ -1,6 +1,6 @@
 <template>
     <div class="hidden side-block min-w-80 sticky top-0 max-w-0 lg:block">
-        <div class="w-full h-full p-8 flex flex-col justify-between items-start top-0 right-0">
+        <div class="w-full h-full px-4 flex flex-col justify-between items-center top-0 right-0">
             <div>
                 <div>
                     <h1 class="text-2xl font-bold mb-4">Stories</h1>
