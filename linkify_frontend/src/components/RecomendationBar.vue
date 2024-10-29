@@ -84,13 +84,12 @@
 
                             <button class="py-1 px-4 btn text-sm">follow</button>
                         </div>
-
                     </div>
                 </div>
             </div>
 
             <div>
-
+                
             </div>
         </div>
     </div>
