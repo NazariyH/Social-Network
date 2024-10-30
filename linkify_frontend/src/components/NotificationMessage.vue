@@ -1,15 +1,10 @@
 <template>
     <div :class="['w-full', 'flex', 'justify-between', 'items-center', 'my-2', 'py-2', 
     'px-4', 'rounded-2xl', 'transition', 'ease-linear', 'duration-100', randomColor]">
-        <div class="flex items-center">
-            <div class="bg-white p-2 rounded-2xl me-2">
-                <div class="size-6 rounded-full loading"></div>
-            </div>
+        <span class="break-words w-3/4">{{ notification.title }}</span>
 
-            <span><router-link to="empty">@Nazariy</router-link> started folowing you</span>
-        </div>
 
-        <button @click="removeNotification($event)" class="text-xl">
+        <button @click="removeNotification($event, notification.id)" class="text-xl">
             <i class="fa-solid fa-circle-xmark"></i>
         </button>
     </div>
@@ -17,17 +12,22 @@
 
 
 <script>
-import { useColorsStore } from '@/stores/colors'
+import { useColorsStore } from '@/store/colors'
+import { useNotificationStore } from '@/store/notification'
 import { ref } from 'vue'
 
 export default {
     name: 'NotificationMessage',
+    props: ['notification'],
     setup() {
         const colorsStore = useColorsStore()
         const randomColor = ref(colorsStore.getRandomColor())
+        const notificationStore = useNotificationStore()
 
 
-        function removeNotification(event) {
+        function removeNotification(even, id) {
+            notificationStore.deleteNotification(id)
+
             const notification = event.target.parentElement.parentElement
             notification.classList.add('translate-x-full')
 

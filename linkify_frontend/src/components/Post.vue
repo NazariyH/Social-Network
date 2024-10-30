@@ -83,7 +83,7 @@
 
 <script>
     import { onMounted } from 'vue'
-    import { useColorsStore } from '@/stores/colors'
+    import { useColorsStore } from '@/store/colors'
     import { ref } from 'vue'
 
     export default {

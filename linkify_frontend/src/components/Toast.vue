@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import { useToastStore } from '@/stores/toast'
+import { useToastStore } from '@/store/toast'
 
 export default {
     name: 'Toast',

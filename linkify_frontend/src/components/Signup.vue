@@ -52,7 +52,7 @@
 <script>
 import { useToggleFunction } from '@/composables/useTogglePassword'
 import { useToggleAuthTabFunction } from '@/composables/useToggleAuthTab'
-import { useToastStore } from '@/stores/toast';
+import { useToastStore } from '@/store/toast';
 import axios from 'axios'
 
 export default {

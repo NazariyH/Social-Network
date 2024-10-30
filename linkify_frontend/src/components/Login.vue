@@ -35,8 +35,8 @@
 
 <script>
 import { useToggleFunction } from '@/composables/useTogglePassword'
-import { useUserStore } from '@/stores/user'
-import { useToastStore } from '@/stores/toast'
+import { useUserStore } from '@/store/user'
+import { useToastStore } from '@/store/toast'
 import axios from 'axios'
 
 export default {

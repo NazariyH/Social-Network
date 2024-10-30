@@ -6,7 +6,7 @@
             <span></span>
         </div>
 
-        <nav class="w-full h-full p-8 flex flex-col justify-between items-center overflow-y-auto">
+        <nav class="w-full max-w-96 h-full p-8 flex flex-col justify-between items-center overflow-y-auto">
             <div id="navbar-profile-info" class="w-full hidden navbar-item">
                 <div class="relative flex justify-end">
                     <img src="../assets/Decorations/profile_doodles.png" class="w-36 absolute -z-10 left-0">
