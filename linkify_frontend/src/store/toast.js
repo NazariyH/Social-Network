@@ -25,7 +25,7 @@ export const useToastStore = defineStore({
             setTimeout(() => {
                 this.classes = this.classes.replace('active', '')
 
-            }, this.ms - 500)
+            }, this.ms - 1000)
 
 
             setTimeout(() => {
