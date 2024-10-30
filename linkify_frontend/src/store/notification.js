@@ -5,7 +5,8 @@ export const useNotificationStore = defineStore({
     id: 'Notification',
 
     state: () => ({
-        notificationList: []
+        notificationList: [],
+        noNotifications: true,
     }),
 
     actions: {
@@ -22,9 +23,17 @@ export const useNotificationStore = defineStore({
 
                 if (response) {
                     this.notificationList = response.data
+
+                    if (this.notificationList.notifications.length !== 0)
+                        this.noNotifications = false
+                    else
+                        this.noNotifications = true
                 }
             } catch (error) {
-                console.log('Something went wrong', error)
+                this.noNotifications = true
+
+                if (error.status !== 404)
+                    console.log('Something went wrong', error)
             }
         },
 
@@ -42,9 +51,17 @@ export const useNotificationStore = defineStore({
 
                 if (response) {
                     this.notificationList = response.data
+
+                    if (this.notificationList.notifications.length !== 0)
+                        this.noNotifications = false
+                    else
+                        this.noNotifications = true
                 }
             } catch (error) {
-                console.log('Something went wrong', error)
+                this.noNotifications = true
+                
+                if (error.status !== 404)
+                    console.log('Something went wrong', error)
             }
         }
     }
