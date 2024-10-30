@@ -3,6 +3,7 @@ from rest_framework.response import Response
 from rest_framework import status
 
 from .forms import SignupForm 
+from notification.models import Notification
 
 
 class Signup(APIView):
@@ -22,9 +23,9 @@ class Signup(APIView):
         })
 
         if form.is_valid():
-            form.save()
+            user = form.save()
 
-
+            Notification.objects.create(user=user, title='Your account has been successfully created')
             return Response({'message': 'Form Submitted successfully'}, status=status.HTTP_201_CREATED)
         else:
             message = 'Oops something went wrong :('
