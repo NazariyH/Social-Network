@@ -1,7 +1,9 @@
 from uuid import uuid4
+
 from django.db import models
 from django.core.validators import FileExtensionValidator
 from django.core.exceptions import ValidationError
+from django.utils.timesince import timesince
 
 from account.models import User
 
@@ -28,7 +30,6 @@ class Post(models.Model):
     body = models.TextField(max_length=3000, blank=True, null=True)
 
     created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(null=True, blank=True)
 
     likes = models.ManyToManyField(User, related_name='liked_posts', blank=True)
     likes_count = models.PositiveIntegerField(default=0)
@@ -40,6 +41,10 @@ class Post(models.Model):
     def save(self, *args, **kwargs):
         self.likes_count = self.likes.count()
         super().save(*args, **kwargs)
+        
+    def created_at_formatted(self):
+        return timesince(self.created_at)
+        
 
 
 

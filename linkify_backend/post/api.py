@@ -16,7 +16,7 @@ class PostList(APIView):
     def get(self, request, *args, **kwargs):
         post_list = get_list_or_404(Post)
 
-        serializer = PostSerializer(post_list, many=True)
+        serializer = PostSerializer(post_list, many=True, context={'request': request})
 
         return Response({'post_list': serializer.data}, status=status.HTTP_200_OK)
 
