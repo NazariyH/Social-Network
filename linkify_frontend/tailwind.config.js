@@ -12,7 +12,8 @@ export default {
 				navBrand: ['Playwrite GB S'],
 			},
 			spacing: {
-				'post-file': '36rem'
+				'post-file': '36rem',
+				'profile-view': 'calc(100% - 80px)' // 80px - size of the side navbar
 			}
 		},
 	},

@@ -847,10 +847,6 @@ video {
   width: 2.5rem;
 }
 
-.w-10\/12{
-  width: 83.333333%;
-}
-
 .w-16{
   width: 4rem;
 }
@@ -1557,6 +1553,10 @@ input:focus, textarea:focus {
 @media (min-width: 768px){
   .md\:flex{
     display: flex;
+  }
+
+  .md\:w-profile-view{
+    width: calc(100% - 80px);
   }
 
   .md\:rounded-2xl{

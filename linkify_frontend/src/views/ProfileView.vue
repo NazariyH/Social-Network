@@ -1,5 +1,5 @@
 <template>
-    <div class="h-auto w-full md:w-11/12 text-black p-4 md:pl-0">
+    <div class="h-auto w-full md:w-profile-view text-black p-4 md:pl-0">
         <ProfileInfo :profile="profile" />
 
         <div class="mt-4">
