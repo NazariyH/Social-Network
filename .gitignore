@@ -10,3 +10,6 @@ linkify_backend/__pycache__/
 linkify_backend/*.pyc
 linkify_backend/media/
 linkify_backend/staticfiles/
+
+# macOS
+.DS_Store
