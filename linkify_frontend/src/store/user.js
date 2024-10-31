@@ -24,7 +24,7 @@ export const useUserStore = defineStore({
                 this.user.id = localStorage.getItem('user.id')
                 this.user.name = localStorage.getItem('user.name')
                 this.user.email = localStorage.getItem('user.email')
-                this.isAuthenticated = true
+                this.user.isAuthenticated = true
 
                 this.refreshToken()
             }
@@ -69,7 +69,7 @@ export const useUserStore = defineStore({
 
 
         async refreshToken() {
-            const url = '/api/account/refresh/'
+            const url = '/api/refresh/'
 
             try {
                 const response = await axios.post(url, {
@@ -84,6 +84,7 @@ export const useUserStore = defineStore({
                     axios.defaults.headers.common["Authorization"] = `Bearer ${response.data.access}`
                 }
             } catch (error) {
+                console.log('fasfasdas')
                 console.log(error)
 
                 this.removeToken()

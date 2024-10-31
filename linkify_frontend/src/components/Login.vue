@@ -43,10 +43,10 @@ export default {
     name: 'Login',
     setup() {
         const { show_password, toggleShowPassword } = useToggleFunction()
-        const { setToken } = useUserStore()
+        const { setToken, setUserInfo, user } = useUserStore()
         const toastStore = useToastStore()
 
-        return { show_password, toggleShowPassword, setToken, toastStore }
+        return { show_password, toggleShowPassword, setToken, setUserInfo, toastStore, user }
     },
     data() {
         return {
@@ -74,8 +74,6 @@ export default {
 
                         this.submitFormData.email = ''
                         this.submitFormData.password = ''
-
-                        this.$router.push({ name: 'home' })
                     }
                 } catch (error) {
                     if (error.response && error.response.data && error.response.data.detail) {
@@ -84,8 +82,20 @@ export default {
                         this.errors.push('An error occurred. Please try fagain.')
                     }
                 }
+
+
+                try {
+                    const response = await axios.get('/api/me/')
+
+                    if (response) {
+                        this.setUserInfo(response.data)
+                        this.$router.push({ name: 'home' })
+                    }
+                } catch(error) {
+                    console.log('Oops something went wrong :(', error)
+                }
             }
-        }
+        },
     }
 }
 </script>

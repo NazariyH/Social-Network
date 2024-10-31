@@ -36,3 +36,13 @@ class Signup(APIView):
                         message = error
                         
             return Response({'message': message}, status=status.HTTP_400_BAD_REQUEST)
+        
+
+
+class Me(APIView):
+    def get(self, request, *args, **kwargs):
+        return Response({
+            'id': request.user.id,
+            'name': request.user.name,
+            'email': request.user.email,
+        }, status=status.HTTP_200_OK)

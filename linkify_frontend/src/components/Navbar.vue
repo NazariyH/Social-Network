@@ -79,7 +79,9 @@
                     </router-link>
                 </li>
                 <li>
-                    <router-link :to="{ name: 'authentication' }" class="navbar-tab flex items-center">
+                    <router-link
+                        :to="!userStore.user.isAuthenticated ? { name: 'authentication' } : { name: 'profile', params: { id: userStore.user.id } }"
+                        class="navbar-tab flex items-center">
                         <div>
                             <i class="fa-solid fa-gear text-xl mr-6"></i>
                             <span class="navbar-item hidden">Settings & Account</span>
@@ -97,6 +99,7 @@
 <script>
 import { onMounted } from 'vue'
 import Notification from '@/components/Notification.vue'
+import { useUserStore } from '@/store/user'
 
 export default {
     name: 'Navbar',
@@ -104,8 +107,11 @@ export default {
         Notification
     },
     setup() {
-        let navbarItem, navbarWrap, navbarBtn, notificationBar, notificationBtn, 
-        searchFieldInput, searchFieldTab
+        const userStore = useUserStore()
+
+        let navbarItem, navbarWrap, navbarBtn, notificationBar, notificationBtn,
+            searchFieldInput, searchFieldTab
+
 
         onMounted(() => {
             navbarItem = document.querySelectorAll('.navbar-item')
@@ -154,7 +160,7 @@ export default {
             }
         }
 
-        return { toggleMenu, openMenu, toggleNotification }
+        return { toggleMenu, openMenu, toggleNotification, userStore }
     }
 }
 </script>
@@ -171,6 +177,7 @@ li {
 #navbar-toggle-btn {
     @apply absolute top-8 left-4 w-10 h-8 flex flex-col justify-between z-10 bg-white p-2 rounded-md;
 }
+
 #navbar-toggle-btn.active {
     @apply left-6 p-2;
 }

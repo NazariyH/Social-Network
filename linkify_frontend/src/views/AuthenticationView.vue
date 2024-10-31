@@ -33,8 +33,8 @@ export default {
     setup() {
         const { switchLogin, switchSignup } = useToggleAuthTabFunction()
 
-        return { switchLogin, switchSignup}
-    }
+        return { switchLogin, switchSignup }
+    },
 }
 </script>
 
