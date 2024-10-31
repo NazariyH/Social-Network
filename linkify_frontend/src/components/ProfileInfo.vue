@@ -1,7 +1,7 @@
 <template>
     <div class="w-full h-auto break-words">
         <div class="w-full h-14 py-2 px-4 flex justify-between items-center rounded-3xl bg-gray-50 pl-12 md:ps-4">
-            <div class="flex">
+            <div class="flex items-center h-full">
                 <h4 class="font-bold">Friends: 
                     <span v-if="profile.friendsCount">{{ profile.friendsCount }}</span>
                     <span v-else>0</span>
