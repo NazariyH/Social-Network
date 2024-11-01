@@ -53,7 +53,6 @@ export default {
 					return
 
 				post_list.value = response.data.post_list
-				console.log(post_list.value[0])
 			} catch (error) {
 				console.log('Something went wrong', error)
 			}
