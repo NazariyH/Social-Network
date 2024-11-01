@@ -1,4 +1,5 @@
 from .models import Post, PostComment, PostImage, PostVideo
+from notification.models import Notification
 from .serializers import PostSerializer
 from .forms import PostForm
 
@@ -47,7 +48,7 @@ class CreatePost(APIView):
             for video in videos:
                 PostVideo.objects.create(post=post, video=video)
             
-            
+            Notification.objects.create(user=request.user, title='Your post has been successfully created')
             
             return Response({'post': serializer.data}, status=status.HTTP_201_CREATED)
         return Response({'message': form.errors}, status=status.HTTP_400_BAD_REQUEST)

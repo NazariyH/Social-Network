@@ -14,7 +14,7 @@
             </router-link>
 
             <div>
-                <span v-if="post.created_at_formated">{{ post.created_at_formated }}</span>
+                <span v-if="post.created_at_formatted">{{ post.created_at_formatted }}</span>
             </div>
         </div>
 
