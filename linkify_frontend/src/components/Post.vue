@@ -9,17 +9,17 @@
                             alt="Profile image">
                     </div>
 
-                    <span>Nazariy</span>
+                    <span v-if="post.author.name">{{ post.author.name }}</span>
                 </div>
             </router-link>
 
             <div>
-                <span>20.10.2007</span>
+                <span v-if="post.created_at_formated">{{ post.created_at_formated }}</span>
             </div>
         </div>
 
         <div class="mb-4">
-            <h1>Exploring the World: Hidden Gems in Popular Destinations</h1>
+            <h1 v-if="post.title">{{ post.title }}</h1>
         </div>
 
         <div class="w-full rounded-3xl overflow-hidden mb-4">
@@ -55,26 +55,26 @@
             </div>
         </div>
 
-        <div class="mb-4">
-            <p>Discover the lesser-known treasures nestled within popular travel destinations. This post takes you off
-                the beaten path to unveil stunning landscapes, charming local spots, and unique cultural experiences
-                that often go unnoticed. From secret beaches to quaint cafes, explore how these hidden gems can
-                transform your travels and offer a deeper connection to the places you visit. Join us on this journey to
-                uncover the world’s best-kept secrets!</p>
+        <div v-if="post.body" class="mb-4">
+            <p>{{ post.body }}</p>
         </div>
 
         <div class="flex">
             <div class="me-8">
                 <button class="like-btn">
-                    <i class="fa-regular fa-heart"></i>
-                    <span class="ml-4">732</span>
+                    <i v-if="!post.is_liked" class="fa-regular fa-heart"></i>
+                    <i v-else class="fa-solid fa-heart"></i>
+
+                    <span class="ml-4" v-if="post.likes_count">{{ post.likes_count }}</span>
+                    <span class="ml-4" v-else>0</span>
                 </button>
             </div>
 
             <div>
                 <button>
                     <i class="fa-solid fa-comment-dots"></i>
-                    <span class="ml-4">24</span>
+                    <span v-if="post.comments_count" class="ml-4">{{ post.comments_count }}</span>
+                    <span v-else class="ml-4">0</span>
                 </button>
             </div>
         </div>

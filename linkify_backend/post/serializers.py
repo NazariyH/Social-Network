@@ -10,7 +10,7 @@ class PostSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Post
-        fields = ['id', 'title', 'body', 'author', 'likes_count', 'is_liked', 'created_at_formatted']
+        fields = ['id', 'title', 'body', 'author', 'likes_count', 'comments_count', 'is_liked', 'created_at_formatted']
 
 
     def get_is_liked(self, obj):

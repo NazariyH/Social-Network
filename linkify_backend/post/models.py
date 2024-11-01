@@ -33,6 +33,8 @@ class Post(models.Model):
 
     likes = models.ManyToManyField(User, related_name='liked_posts', blank=True)
     likes_count = models.PositiveIntegerField(default=0)
+    
+    comments_count = models.PositiveIntegerField(default=0)
 
 
     def __str__(self):
