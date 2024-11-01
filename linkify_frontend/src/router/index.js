@@ -5,6 +5,7 @@ import InboxView  from '@/views/InboxView.vue'
 import StoriesView from '@/views/StoriesView.vue'
 import StoreView from '@/views/StoreView.vue'
 import ProfileView from '@/views/ProfileView.vue'
+import NotFoundView from '@/views/NotFoundView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -39,6 +40,11 @@ const router = createRouter({
       name: 'store',
       component: StoreView
     },
+    {
+      path: '/:catchAll(.*)',
+      name: 'NotFound',
+      component: NotFoundView
+    }
   ]
 })
 
