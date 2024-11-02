@@ -52,7 +52,7 @@ class Post(models.Model):
 
 class PostImage(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid4, editable=False)
-    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='images')
     image = models.ImageField(
         upload_to='post/images/', 
         validators=[
@@ -69,7 +69,7 @@ class PostImage(models.Model):
 
 class PostVideo(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid4, editable=False)
-    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='videos')
     video = models.FileField(
         upload_to='post/videos/',
         validators=[
