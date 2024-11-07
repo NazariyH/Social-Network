@@ -21,7 +21,7 @@
         </div>
 
         <div class="mb-4">
-            <h1 v-if="post.title">{{ post.title }}</h1>
+            <router-link :to="{ name: 'post-detail', params: { id: post.id }}">{{ post.title }}</router-link>
         </div>
 
         <div v-if="post.images.length !== 0 || post.videos.length !== 0" class="w-full rounded-3xl overflow-hidden mb-4">
