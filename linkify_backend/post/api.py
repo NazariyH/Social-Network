@@ -52,3 +52,13 @@ class CreatePost(APIView):
             
             return Response({'post': serializer.data}, status=status.HTTP_201_CREATED)
         return Response({'message': form.errors}, status=status.HTTP_400_BAD_REQUEST)
+    
+    
+class PostDetail(APIView):
+    permission_classes = [AllowAny]
+    
+    def get(self, request, pk, *args, **kwargs):
+        post = get_object_or_404(Post, pk=pk)
+        serializer = PostSerializer(post, context={'request': request})
+        
+        return Response(serializer.data, status=status.HTTP_200_OK)

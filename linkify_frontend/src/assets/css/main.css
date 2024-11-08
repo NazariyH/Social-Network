@@ -44,3 +44,20 @@ body {
 input:focus, textarea:focus {
     outline: none;
 }
+
+
+
+.spiner {
+    @apply w-32 h-32 border-8 border-b-green-500 border-t-red-500 border-l-yellow-500 border-r-blue-500 rounded-full;
+    animation: rotate 2s infinite;
+}
+
+
+@keyframes rotate {
+    from {
+        transform: rotate(0);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}

@@ -18,6 +18,7 @@ class VideoSerializer(serializers.ModelSerializer):
 
 class PostSerializer(serializers.ModelSerializer):
     is_liked = serializers.SerializerMethodField()
+    is_current_user = serializers.SerializerMethodField()
     author = UserSerializer(read_only=True)
     
     images = ImageSerialier(many=True, read_only=True)
@@ -33,6 +34,7 @@ class PostSerializer(serializers.ModelSerializer):
             'likes_count',
             'comments_count',
             'is_liked',
+            'is_current_user',
             'created_at_formatted',
             'images',
             'videos',
@@ -44,4 +46,12 @@ class PostSerializer(serializers.ModelSerializer):
         if request and hasattr(request, 'user'):
             user = request.user
             return user.is_authenticated and obj.likes.filter(id=user.id).exists()
+        return False
+    
+    
+    def get_is_current_user(self, obj):
+        request = self.context.get('request')
+        if request and hasattr(request, 'user'):
+            user = request.user
+            return user.is_authenticated and obj.author == user
         return False
