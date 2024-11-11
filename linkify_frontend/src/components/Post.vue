@@ -21,10 +21,11 @@
         </div>
 
         <div class="mb-4">
-            <router-link :to="{ name: 'post-detail', params: { id: post.id }}">{{ post.title }}</router-link>
+            <router-link :to="{ name: 'post-detail', params: { id: post.id } }">{{ post.title }}</router-link>
         </div>
 
-        <div v-if="post.images.length !== 0 || post.videos.length !== 0" class="w-full rounded-3xl overflow-hidden mb-4">
+        <div v-if="post.images.length !== 0 || post.videos.length !== 0"
+            class="w-full rounded-3xl overflow-hidden mb-4">
             <div class="flex items-end w-full h-post-file relative">
                 <div :data-postId="post.id"
                     class="slider-wrap w-full h-full loading absolute top-0 flex transition ease-linear duration-300">
@@ -46,22 +47,38 @@
             <p>{{ post.body }}</p>
         </div>
 
-        <div class="flex">
-            <div class="me-8">
-                <button class="like-btn">
-                    <i v-if="!post.is_liked" class="fa-regular fa-heart"></i>
-                    <i v-else class="fa-solid fa-heart"></i>
+        <div class="flex justify-between w-full">
+            <div class="flex">
+                <div class="me-8">
+                    <button class="like-btn">
+                        <i v-if="!post.is_liked" class="fa-regular fa-heart"></i>
+                        <i v-else class="fa-solid fa-heart"></i>
 
-                    <span class="ml-4" v-if="post.likes_count">{{ post.likes_count }}</span>
-                    <span class="ml-4" v-else>0</span>
-                </button>
+                        <span class="ml-4" v-if="post.likes_count">{{ post.likes_count }}</span>
+                        <span class="ml-4" v-else>0</span>
+                    </button>
+                </div>
+
+                <div>
+                    <button>
+                        <i class="fa-solid fa-comment-dots"></i>
+                        <span v-if="post.comments_count" class="ml-4">{{ post.comments_count }}</span>
+                        <span v-else class="ml-4">0</span>
+                    </button>
+                </div>
             </div>
 
-            <div>
-                <button>
-                    <i class="fa-solid fa-comment-dots"></i>
-                    <span v-if="post.comments_count" class="ml-4">{{ post.comments_count }}</span>
-                    <span v-else class="ml-4">0</span>
+            <div v-if="post.is_current_user" class="flex relative">
+                <div class="post-option-block hidden px-4 py-2 bg-gray-100 absolute right-full bottom-0 text-black" :data-postId="post.id">
+                    <ul>
+                        <li class="mx-2 text-sm">
+                            <button class="flex items-center"><i class="fa-solid fa-trash me-2"></i>Remove</button>
+                        </li>
+                    </ul>
+                </div>
+
+                <button @click="showPostOption($event)">
+                    <i class="fa-solid fa-ellipsis rotate-90"></i>
                 </button>
             </div>
         </div>
@@ -79,12 +96,15 @@ export default {
         const colorsStore = useColorsStore()
         const randomColor = ref(colorsStore.getRandomColor())
         
+        let postOptionBlock = null
         let touchStartX, touchEndX
 
 
         onMounted(() => {
             const sliderWrap = document.querySelector(`.post-main-block[data-postId="${props.post.id}"] .slider-wrap`)
             const sliderDots = document.querySelectorAll(`.post-main-block[data-postId="${props.post.id}"] .slider-dot`)
+            postOptionBlock = document.querySelector(`.post-option-block[data-postId="${props.post.id}"]`)
+
 
             if (!sliderWrap && !sliderDots.length > 0) return
 
@@ -140,7 +160,12 @@ export default {
             updateSlide(sliderWrap, sliderDots, slideId)
         }
 
-        return { toggleSlide, randomColor }
+
+        function showPostOption(event) {
+            postOptionBlock.classList.toggle('hidden')
+        }
+
+        return { toggleSlide, randomColor, showPostOption }
     }
 }
 
