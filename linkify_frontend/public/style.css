@@ -1549,6 +1549,11 @@ input:focus, textarea:focus {
   background-color: rgb(75 85 99 / var(--tw-bg-opacity));
 }
 
+.hover\:text-gray-500:hover{
+  --tw-text-opacity: 1;
+  color: rgb(107 114 128 / var(--tw-text-opacity));
+}
+
 .hover\:opacity-70:hover{
   opacity: 0.7;
 }

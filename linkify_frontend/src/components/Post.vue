@@ -69,10 +69,19 @@
             </div>
 
             <div v-if="post.is_current_user" class="flex relative">
-                <div class="post-option-block hidden px-4 py-2 bg-gray-100 absolute right-full bottom-0 text-black" :data-postId="post.id">
+                <div 
+                class="post-option-block hidden px-4 py-2 bg-gray-100 absolute 
+                right-full bottom-0 text-black rounded-xl rounded-br-none text-sm" 
+                :data-postId="post.id">
                     <ul>
-                        <li class="mx-2 text-sm">
-                            <button class="flex items-center"><i class="fa-solid fa-trash me-2"></i>Remove</button>
+                        <li class="post-option-menu-item">
+                            <button><i class="fa-regular fa-bookmark"></i>Remove</button>
+                        </li>
+                        <li class="post-option-menu-item">
+                            <button><i class="fa-solid fa-pen-to-square"></i>Edit</button>
+                        </li>
+                        <li class="post-option-menu-item">
+                            <button><i class="fa-solid fa-trash"></i>Remove</button>
                         </li>
                     </ul>
                 </div>
@@ -213,5 +222,17 @@ export default {
 .slider-wrap img {
     min-width: 100%;
     max-width: 100%;
+}
+
+.post-option-menu-item {
+    @apply m-2;
+}
+
+.post-option-menu-item button {
+    @apply flex items-center hover:text-gray-500 transition ease-linear duration-200;
+}
+
+.post-option-menu-item button i {
+    @apply me-4;
 }
 </style>
