@@ -26,6 +26,7 @@ export default {
         const route = useRoute()
 
         const profile = ref({})
+        const posts = ref([])
 
 
         onMounted(() => {
@@ -40,15 +41,18 @@ export default {
             try {
                 const response = await axios.get(url)
 
-                console.log(response.data.profile)
                 profile.value = response.data.profile
+
+                if (response.data.posts)
+                    posts.value = response.data.posts
+                
             } catch (error) {
                 console.log('Oops. Something went wrong :(', error)
             }
 
         }
 
-        return { profile }
+        return { profile, posts }
     }
 }
 </script>

@@ -8,6 +8,7 @@ from .forms import SignupForm
 from notification.models import Notification
 from .models import User
 from .serializers import UserSerializer
+from post.serializers import PostSerializer
 
 
 class Signup(APIView):
@@ -57,4 +58,7 @@ class Profile(APIView):
         user = get_object_or_404(User, id=pk)
         profileSerializer = UserSerializer(user, context={'request': request})
         
-        return Response({'profile': profileSerializer.data}, status=status.HTTP_200_OK)
+        if user.posts.all().exists():
+            postSerializer = PostSerializer(user.posts.all(), many=True, context={'request': request})
+        
+        return Response({'profile': profileSerializer.data, 'posts': postSerializer.data}, status=status.HTTP_200_OK)
