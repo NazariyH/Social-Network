@@ -7,4 +7,5 @@ urlpatterns = [
     path('login/', TokenObtainPairView.as_view(), name='token_obtain'),
     path('refresh/', TokenRefreshView.as_view(), name='token-refresh'),
     path('me/', api.Me.as_view(), name='me'),
+    path('profile/<uuid:pk>/', api.Profile.as_view(), name='profile')
 ]

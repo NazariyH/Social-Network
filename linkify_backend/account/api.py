@@ -1,9 +1,13 @@
+from django.shortcuts import get_object_or_404
+
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 
 from .forms import SignupForm 
 from notification.models import Notification
+from .models import User
+from .serializers import UserSerializer
 
 
 class Signup(APIView):
@@ -46,3 +50,11 @@ class Me(APIView):
             'name': request.user.name,
             'email': request.user.email,
         }, status=status.HTTP_200_OK)
+        
+        
+class Profile(APIView):
+    def get(self, request, pk, *args, **kwargs):
+        user = get_object_or_404(User, id=pk)
+        profileSerializer = UserSerializer(user, context={'request': request})
+        
+        return Response({'profile': profileSerializer.data}, status=status.HTTP_200_OK)

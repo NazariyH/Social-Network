@@ -16,7 +16,7 @@
         <div class="profile-block-info w-full mt-4 flex flex-col lg:flex-row">
             <div class="profile-block-info p-4 w-full lg:w-1/2 lg:me-2 flex rounded-3xl bg-gray-50 mb-4 lg:mb-0">
                 <div class="size-64 rounded-full overflow-hidden loading mr-4">
-                    <img v-if="profile.profileImage" class="size-full object-cover" :src="profile.profileImage" alt="">
+                    <img v-if="profile.avatar" class="size-full object-cover" :src="profile.avatar" alt="">
                 </div>
 
                 <div class="h-full flex flex-col">
@@ -38,10 +38,12 @@
                             </div>
                         </div>
 
-                        <div v-if="profile.socialMedias" class="flex">
-                            <a v-for="socialMedia in profile.socialMedias" :href="socialMedia[1]">
+                        <div v-if="profile.social_networks" class="flex">
+                            <a v-for="social_network in profile.social_networks" 
+                            :key="social_network.id" 
+                            :href="social_network.link">
                                 <img class="size-8 me-4 hover:scale-125 hover:opacity-80 transition ease-in-out duration-200"
-                                    :src="`/src/assets/social_media/${socialMedia[0]}.png`" alt="">
+                                    :src="social_network.icon" alt="">
                             </a>
                         </div>
                     </div>
@@ -55,15 +57,16 @@
                     <p>{{ profile.bio }}</p>
                 </div>
 
-                <div v-if="profile.goals">
-                    <h1 class="gray-text font-bold mb-2 font-2xl">My goals</h1>
+                <div v-if="profile.hashtags">
+                    <h1 class="gray-text font-bold mb-2 font-2xl">My hashtags</h1>
                     <div class="flex flex-wrap">
-                        <span v-for="goal in profile.goals" :class="['goal-pillow', generateColor()]">{{ goal
-                            }}</span>
+                        <span v-for="hashtag in profile.hashtags" 
+                        :class="['hashtag-pillow', generateColor()]"
+                        :key="hashtag.id">{{ hashtag.name }}</span>
                     </div>
                 </div>
 
-                <div v-if="!profile.bio && !profile.goals" class="flex justify-center items-center w-full h-full">
+                <div v-if="!profile.bio && !profile.hashtags" class="flex justify-center items-center w-full h-full">
                     <p class="gray-text font-bold text-2xl">No info</p>
                 </div>
             </div>
@@ -101,7 +104,7 @@ export default {
     @apply text-gray-400;
 }
 
-.goal-pillow {
+.hashtag-pillow {
     @apply px-4 py-2 text-sm text-white font-bold rounded-2xl me-4 my-2 hover:opacity-70 transition ease-in-out duration-200;
 }
 </style>

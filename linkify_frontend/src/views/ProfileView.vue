@@ -3,15 +3,7 @@
         <ProfileInfo :profile="profile" />
 
         <div class="mt-4">
-            <Post />
-            <Post />
-            <Post />
-            <Post />
-            <Post />
-            <Post />
-            <Post />
-            <Post />
-            <Post />
+            <Post v-for="post in posts" :key="post.id" :post="post" />
         </div>
     </div>
 </template>
@@ -20,7 +12,9 @@
 <script>
 import ProfileInfo from '@/components/ProfileInfo.vue'
 import Post from '@/components/Post.vue'
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
+import { useRoute } from 'vue-router'
+import axios from 'axios'
 
 export default {
     name: 'ProfileView',
@@ -29,19 +23,30 @@ export default {
         Post,
     },
     setup() {
-        const profile = ref({
-            email: 'test1@gmail.com',
-            name: 'Mis Hermano',
-            age: 96,
-            friendsCount: 324,
-            origin: 'Spanish',
-            bio: 'fkjasfdjklsajfksjdfklsajdfjdskfasdfjaskdlfjskdafkjasfdjklsajfksjdfklsajdfjdskfasdfjaskdlfjskdafkjasfdjklsajfksjdfklsajdfjdskfasdfjaskdlfjskdafkjasfdjklsajfksjdfklsajdfjdskfasdfjaskdlfjskdafkjasfdjklsajfksjdfklsajdfjdskfasdfjaskdlfjskdafkjasfdjklsajfksjdfklsajdfjdskfasdfjaskdlfjskdafkjasfdjklsajfksjdfklsajdfjdskfasdfjaskdlfjskda',
-            profileImage: 'https://images.unsplash.com/photo-1570158268183-d296b2892211?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8ZmFjZXxlbnwwfHwwfHx8MA%3D%3D',
-            goals: ['Love', 'Life','Love', 'Life', 'Love', 'Life','Love', 'Life', 'Love', 'Life','Love', 'Life', 'Love', 'Life','Love', 'Life', 'Love', 'Life','Love', 'Life', 'Love', 'Life','Love', 'Life', 'Love', 'Life','Love', 'Life'],
-            socialMedias: [['x', '#'], ['reddit', '#'], ['telegram', '#'], ['instagram', '#']],
-            isCurrentUser: false,
+        const route = useRoute()
+
+        const profile = ref({})
+
+
+        onMounted(() => {
+            fetchProfileInfo()
         })
 
+
+        async function fetchProfileInfo() {
+            const userId = route.params.id
+            const url = `/api/profile/${userId}/`
+
+            try {
+                const response = await axios.get(url)
+
+                console.log(response.data.profile)
+                profile.value = response.data.profile
+            } catch (error) {
+                console.log('Oops. Something went wrong :(', error)
+            }
+
+        }
 
         return { profile }
     }
