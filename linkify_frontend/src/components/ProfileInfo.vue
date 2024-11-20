@@ -3,14 +3,14 @@
         <div class="w-full h-14 py-2 px-4 flex justify-between items-center rounded-3xl bg-gray-50 pl-12 md:ps-4">
             <div class="flex items-center h-full">
                 <h4 class="font-bold">Friends: 
-                    <span v-if="profile.friendsCount">{{ profile.friendsCount }}</span>
+                    <span v-if="profile.friends_count">{{ profile.friends_count }}</span>
                     <span v-else>0</span>
                 </h4>
 
-                <button v-if="!profile.isCurrentUser" class="btn px-4 ms-4 h-full">Add to friend</button>
+                <button v-if="!profile.is_current_user" class="btn px-4 ms-4 h-full">Add to friend</button>
             </div>
 
-            <button v-if="profile.isCurrentUser" class="btn px-4 h-full">Log out</button>
+            <button v-if="profile.is_current_user" class="btn px-4 h-full">Log out</button>
         </div>
 
         <div class="profile-block-info w-full mt-4 flex flex-col lg:flex-row">
