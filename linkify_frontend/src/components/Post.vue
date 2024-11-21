@@ -81,7 +81,7 @@
                             <button><i class="fa-solid fa-pen-to-square"></i>Edit</button>
                         </li>
                         <li class="post-option-menu-item">
-                            <button><i class="fa-solid fa-trash"></i>Remove</button>
+                            <button @:click="removePost(post.id)"><i class="fa-solid fa-trash"></i>Remove</button>
                         </li>
                     </ul>
                 </div>
@@ -94,8 +94,12 @@
     </div>
 </template>
 
-<script>import { onMounted, ref } from 'vue'
+<script>
+
+import { onMounted, ref } from 'vue'
 import { useColorsStore } from '@/store/colors'
+import { useToastStore } from '@/store/toast.js'
+import axios from 'axios'
 
 export default {
     name: 'Post',
@@ -103,6 +107,7 @@ export default {
     setup(props) {
         const sliderSwipeDistance = 100
         const colorsStore = useColorsStore()
+        const toastStore = useToastStore()
         const randomColor = ref(colorsStore.getRandomColor())
         
         let postOptionBlock = null
@@ -174,7 +179,29 @@ export default {
             postOptionBlock.classList.toggle('hidden')
         }
 
-        return { toggleSlide, randomColor, showPostOption }
+
+        async function removePost(id) {
+            const url = `/api/posts/${id}/delete/`
+
+            try {
+                const user_access_token = localStorage.getItem('user.access')
+                const response = await axios.delete(url, {
+                    headers: {
+                        'Authorization': `Bearer ${user_access_token}`
+                    }
+                })
+
+
+                const post = document.querySelector(`.post-main-block[data-postId="${id}"]`)
+                post.remove()
+                
+                toastStore.showToast(5000, 'Your post has been succcessfully deleted', 'bg-emerald-600')
+            } catch (error) {
+                toastStore.showToast(5000, 'Something went wrong', 'bg-red-600')
+            }
+        }
+
+        return { toggleSlide, randomColor, showPostOption, removePost }
     }
 }
 

@@ -70,7 +70,7 @@ export default {
                         axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.access || response.data.token}`
 
 
-                        this.toastStore.showToast(5000, 'The user is loged in', 'bg-emerald-500')
+                        this.toastStore.showToast(5000, 'The user is loged in', 'bg-emerald-600')
 
                         this.submitFormData.email = ''
                         this.submitFormData.password = ''

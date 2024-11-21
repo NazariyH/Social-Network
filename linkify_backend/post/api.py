@@ -62,3 +62,13 @@ class PostDetail(APIView):
         serializer = PostSerializer(post, context={'request': request})
         
         return Response(serializer.data, status=status.HTTP_200_OK)
+    
+    
+class PostManagement(APIView):
+    permission_classes = [IsAuthenticated]
+    
+    def delete(self, request, pk, *args, **kwargs):
+        post = get_object_or_404(Post, id=pk)
+        post.delete()
+        
+        return Response(status=status.HTTP_204_NO_CONTENT)

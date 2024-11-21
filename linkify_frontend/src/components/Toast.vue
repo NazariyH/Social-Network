@@ -2,7 +2,7 @@
     <div 
         id="toast"
         v-if="true" 
-        class="fixed bottom-4 right-0 translate-x-full bg-emerald-700 opacity-20 transition ease-in-out delay-300 duration-300 py-2 px-4 rounded-xl text-white" 
+        class="fixed bottom-4 right-0 translate-x-full opacity-20 transition ease-in-out delay-300 duration-300 py-2 px-4 rounded-xl text-white" 
         :class="toastStore.classes">
         <span>{{ toastStore.message }}</span>
     </div>
@@ -24,6 +24,6 @@ export default {
 
 <style>
     #toast.active {
-        @apply -translate-x-4 bg-emerald-700 opacity-100;
+        @apply -translate-x-4 opacity-100;
     }
 </style>

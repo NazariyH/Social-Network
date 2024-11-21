@@ -6,7 +6,7 @@ export const useToastStore = defineStore({
     state: () => ({
         ms: 0,
         message: '',
-        classes: '',
+        classes: 'bg-emerald-700',
         isVisible: false
     }),
 

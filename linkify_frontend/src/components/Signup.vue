@@ -84,7 +84,7 @@ export default {
                     const response = await axios.post('/api/signup/', this.form)
 
                     if (response) {
-                        this.toastStore.showToast(5000, 'The user is registered. Please log in', 'bg-emerald-500')
+                        this.toastStore.showToast(5000, 'The user is registered. Please log in', 'bg-emerald-600')
 
                         // Clear form fields
                         this.form.email = ''
