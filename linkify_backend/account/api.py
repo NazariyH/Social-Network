@@ -59,6 +59,11 @@ class Profile(APIView):
         profileSerializer = UserSerializer(user, context={'request': request})
         
         if user.posts.all().exists():
-            postSerializer = PostSerializer(user.posts.all(), many=True, context={'request': request})
+            
+            if user == request.user:
+                postSerializer = PostSerializer(user.posts.all(), many=True, context={'request': request})
+            else:
+                postSerializer = PostSerializer(user.posts.filter(hidden=False), many=True, context={'request': request})
+                
         
         return Response({'profile': profileSerializer.data, 'posts': postSerializer.data}, status=status.HTTP_200_OK)

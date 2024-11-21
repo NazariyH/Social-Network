@@ -3,7 +3,7 @@
         :data-postId="post.id">
 
         <div class="flex items-center justify-between w-ful mb-4">
-            <router-link to="empty">
+            <router-link :to="{ name: 'profile', params: { 'id': post.author.id } }">
                 <div class="flex items-center">
                     <div class="w-10 h-10 rounded-full overflow-hidden loading me-4">
                         <img class="w-full h-full object-cover"
