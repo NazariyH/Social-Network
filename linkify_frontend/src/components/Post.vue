@@ -75,7 +75,7 @@
                 :data-postId="post.id">
                     <ul>
                         <li class="post-option-menu-item">
-                            <button><i class="fa-regular fa-bookmark"></i>Save</button>
+                            <button><i class="fa-solid fa-eye-slash"></i>Hide</button>
                         </li>
                         <li class="post-option-menu-item">
                             <button><i class="fa-solid fa-pen-to-square"></i>Edit</button>
