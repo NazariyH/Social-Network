@@ -15,7 +15,7 @@ class PostList(APIView):
     permission_classes = [AllowAny]
 
     def get(self, request, *args, **kwargs):
-        post_list = get_list_or_404(Post)
+        post_list = get_list_or_404(Post, hidden=False)
 
         serializer = PostSerializer(post_list, many=True, context={'request': request})
 
@@ -26,9 +26,6 @@ class CreatePost(APIView):
     permission_classes = [IsAuthenticated]
     
     def post(self, request, *args, **kwargs):
-        images = request.FILES.getlist('images')
-        print(images)  
-            
         form = PostForm(request.data)
         
         
@@ -40,7 +37,7 @@ class CreatePost(APIView):
             serializer = PostSerializer(post)
             
             images = request.FILES.getlist('images')
-            print(images)
+            
             for image in images:
                 PostImage.objects.create(post=post, image=image)
                 
@@ -58,7 +55,7 @@ class PostDetail(APIView):
     permission_classes = [AllowAny]
     
     def get(self, request, pk, *args, **kwargs):
-        post = get_object_or_404(Post, pk=pk)
+        post = get_object_or_404(Post, pk=pk, hidden=False)
         serializer = PostSerializer(post, context={'request': request})
         
         return Response(serializer.data, status=status.HTTP_200_OK)
@@ -69,6 +66,20 @@ class PostManagement(APIView):
     
     def delete(self, request, pk, *args, **kwargs):
         post = get_object_or_404(Post, id=pk)
-        post.delete()
         
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        if post.author == request.user:
+            post.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
+    
+    
+    def patch(self, request, pk, *args, **kwargs):
+        post = get_object_or_404(Post, id=pk)
+        
+        if post.author == request.user:
+            post.hidden = not post.hidden
+            post.save()
+        
+            serializer = PostSerializer(post, context={'request': request})
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)

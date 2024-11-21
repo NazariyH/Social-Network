@@ -75,7 +75,14 @@
                 :data-postId="post.id">
                     <ul>
                         <li class="post-option-menu-item">
-                            <button><i class="fa-solid fa-eye-slash"></i>Hide</button>
+                            <button v-if="post.hidden" @:click="toggleHiddenPost(post.id)">
+                                <i class="fa-solid fa-eye-slash"></i>
+                                Unhide
+                            </button>
+                            <button v-else @:click="toggleHiddenPost(post.id)">
+                                <i class="fa-solid fa-eye"></i>
+                                Hide
+                            </button>
                         </li>
                         <li class="post-option-menu-item">
                             <button><i class="fa-solid fa-pen-to-square"></i>Edit</button>
@@ -200,8 +207,28 @@ export default {
                 toastStore.showToast(5000, 'Something went wrong', 'bg-red-600')
             }
         }
+        
 
-        return { toggleSlide, randomColor, showPostOption, removePost }
+        async function toggleHiddenPost(id) {
+            const url = `/api/posts/${id}/hide-toggle/`
+
+            try {
+                const user_access_token = localStorage.getItem('user.access')
+
+                const respone = await axios.patch(url, {
+                    headers: {
+                        'Authorization': `Bearer ${user_access_token}`
+                    }
+                })
+
+                props.post.hidden = respone.data.hidden
+
+            } catch (error) {
+                toastStore.showToast(5000, 'Something went wrong', 'bg-red-600')
+            }
+        }
+
+        return { toggleSlide, randomColor, showPostOption, removePost, toggleHiddenPost }
     }
 }
 

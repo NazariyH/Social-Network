@@ -35,6 +35,7 @@ class Post(models.Model):
     likes_count = models.PositiveIntegerField(default=0)
     
     comments_count = models.PositiveIntegerField(default=0)
+    hidden = models.BooleanField(default=False, null=True, blank=True)
 
 
     def __str__(self):

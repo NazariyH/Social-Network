@@ -38,6 +38,7 @@ class PostSerializer(serializers.ModelSerializer):
             'created_at_formatted',
             'images',
             'videos',
+            'hidden',
         ]
 
 

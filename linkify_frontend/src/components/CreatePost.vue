@@ -113,8 +113,6 @@
 
                     if (!response) return
 
-                    console.log(response.data)
-
                     resetForm()
                 } catch (error) {
                     console.log('Oops, Something went wrong :(', error)
