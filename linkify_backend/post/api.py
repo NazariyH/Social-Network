@@ -45,7 +45,7 @@ class CreatePost(APIView):
             for video in videos:
                 PostVideo.objects.create(post=post, video=video)
             
-            Notification.objects.create(user=request.user, title='Your post has been successfully created')
+            Notification.objects.create(user=request.user, title='Your post has been successfully created!')
             
             return Response({'post': serializer.data}, status=status.HTTP_201_CREATED)
         return Response({'message': form.errors}, status=status.HTTP_400_BAD_REQUEST)
@@ -69,6 +69,7 @@ class PostManagement(APIView):
         
         if post.author == request.user:
             post.delete()
+            Notification.objects.create(user=request.user, title='Your post has been successfully deleted!')
             return Response(status=status.HTTP_204_NO_CONTENT)
         return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
     
